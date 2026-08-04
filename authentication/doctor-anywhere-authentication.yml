@@ -1,0 +1,45 @@
+generated: '2026-08-04'
+method: searched
+source: https://doctoranywhere.co.th/llms.txt
+docs: https://dev.wix.com/docs/develop-websites/articles/get-started/about-the-wix-site-mcp
+note: 'Doctor Anywhere publishes no OpenAPI, so no securitySchemes could be derived. The
+  only publicly documented authentication contract on any Doctor Anywhere host is the
+  Wix Site MCP visitor-session model advertised in the regional llms.txt files and
+  confirmed by an anonymous tools/list.'
+summary:
+  types: [none, session-token]
+  api_key_in: []
+  oauth2_flows: []
+schemes:
+- name: anonymous-mcp
+  type: none
+  applies_to:
+  - https://doctoranywhere.co.th/_api/mcp
+  - https://www.doctoranywhere.my/_api/mcp
+  - https://doctoranywhere.co.id/_api/mcp
+  description: 'Connecting to the site MCP endpoint and calling tools/list requires no
+    credentials. The published llms.txt states "No authentication required to connect to
+    the MCP endpoint" and "Only public information accessible on the site is available".'
+  evidence: 'POST tools/list returned HTTP 200 with 9 tools and no Authorization header,
+    2026-08-04.'
+- name: wix-visitor-token
+  type: session-token
+  applies_to:
+  - https://doctoranywhere.co.th/_api/mcp
+  - https://www.doctoranywhere.my/_api/mcp
+  - https://doctoranywhere.co.id/_api/mcp
+  description: 'Acting on a visitor''s behalf requires a visitor access token minted by
+    the GenerateVisitorToken tool and then passed as the required visitorToken argument
+    to CallWixSiteAPI and ExecuteWixAPI. The token is scoped to a visitor session over
+    public site data; there is no user login, API key or OAuth scope surface.'
+  token_issuer_tool: GenerateVisitorToken
+  consuming_tools: [CallWixSiteAPI, ExecuteWixAPI]
+  evidence: mcp/doctor-anywhere-mcp-tools-list.json
+not_published:
+  api_keys: 'No public API key issuance — there is no Doctor Anywhere developer portal or
+    signup for API credentials.'
+  oauth2: 'No /.well-known/oauth-authorization-server or /.well-known/openid-configuration
+    on any host (see well-known/doctor-anywhere-well-known.yml).'
+  platform_api: 'api.doctoranywhere.com is an Apigee gateway serving Doctor Anywhere''s own
+    apps; anonymous requests return an Apigee ApplicationNotFound fault and no auth
+    challenge or documentation is exposed.'

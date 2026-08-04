@@ -1,0 +1,11 @@
+generated: '2026-08-04'
+method: generated
+source: mcp/doctor-anywhere-mcp-tools-list.json
+note: 'Doctor Anywhere publishes no OpenAPI, so skills are grounded in the verified live
+  MCP tool set rather than in operationIds. Every tool named was confirmed by an anonymous
+  tools/list on 2026-08-04.'
+skills:
+- file: doctor-anywhere-site-mcp-lookup.md
+  name: Look up Doctor Anywhere regional services over MCP
+  api: mcp/doctor-anywhere-mcp.yml
+  operations: [GetBusinessDetails, SearchInSite, SearchSiteApiDocs, GenerateVisitorToken, CallWixSiteAPI]

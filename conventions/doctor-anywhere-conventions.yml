@@ -1,0 +1,61 @@
+generated: '2026-08-04'
+method: derived
+source: mcp/doctor-anywhere-mcp-tools-list.json
+note: 'Doctor Anywhere publishes no REST API contract, so the cross-cutting semantics
+  captured here are those of the one public machine surface it serves: the Wix Site MCP
+  endpoints on its regional hosts. Derived from the live tools/list response and the
+  published llms.txt; nothing here is asserted about the private Apigee platform API.'
+protocol:
+  name: Model Context Protocol
+  transport: HTTP (Streamable HTTP at /_api/mcp)
+  envelope: JSON-RPC 2.0
+  content_negotiation: 'Accept: application/json, text/event-stream'
+  session: 'The server issues an Mcp-Session-Id response header on the initial request.'
+  observed_headers:
+  - mcp-session-id
+  - x-wix-request-id
+  - x-robots-tag: noindex
+authentication:
+  style: anonymous connect, visitor-session token for acting
+  see: authentication/doctor-anywhere-authentication.yml
+request_tracing:
+  header: x-wix-request-id
+  scope: per request, returned on every MCP response
+  note: derived from observed response headers
+idempotency:
+  supported: false
+  note: 'No idempotency key header, parameter or retry contract is documented on any
+    Doctor Anywhere surface. Recorded as absent — no Idempotency pointer is emitted.'
+pagination:
+  supported: unknown
+  note: 'Not expressed at the MCP layer; any paging is a property of the underlying Wix
+    business-solution API reached through CallWixSiteAPI, which is documented by Wix, not
+    by Doctor Anywhere.'
+versioning:
+  scheme: unversioned path
+  note: 'The MCP endpoint is served at a fixed /_api/mcp path with no version segment,
+    date header or version negotiation. Tool changes are announced through the MCP tool
+    update notification, and the published llms.txt instructs clients to re-issue
+    tools/list on receipt of a tool update notification.'
+error_envelope:
+  format: JSON-RPC 2.0 error object
+  note: 'No provider-specific problem-details or error-code registry is published; see
+    errors/ (absent) — nothing to derive.'
+rate_limits:
+  documented: false
+  note: 'No rate-limit documentation and no RateLimit/Retry-After headers observed on the
+    tools/list responses.'
+security_headers:
+  api_gateway:
+    host: api.doctoranywhere.com
+    observed:
+    - 'Content-Security-Policy: frame-ancestors ''none'''
+    - 'X-Frame-Options: DENY'
+    - 'X-Content-Type-Options: nosniff'
+    - 'X-XSS-Protection: 1'
+    - 'Strict-Transport-Security: max-age=86400'
+cross_links:
+  authentication: authentication/doctor-anywhere-authentication.yml
+  conformance: conformance/doctor-anywhere-conformance.yml
+  lifecycle: lifecycle/doctor-anywhere-lifecycle.yml
+  mcp: mcp/doctor-anywhere-mcp.yml

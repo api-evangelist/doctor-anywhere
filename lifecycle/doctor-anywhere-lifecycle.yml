@@ -1,0 +1,24 @@
+generated: '2026-08-04'
+method: probed
+source: live HTTP probe of Doctor Anywhere hosts, 2026-08-04
+note: 'Doctor Anywhere runs no public API programme, so there is no versioning policy,
+  deprecation policy, SLA, changelog or status page to capture. Recorded as absent so a
+  later round can detect a change rather than re-probe blind.'
+versioning:
+  scheme: none-published
+  note: 'The one public machine surface, the Wix Site MCP endpoint, is served at an
+    unversioned /_api/mcp path.'
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: 'No deprecation or sunset policy published on any host.'
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+status_page_probe:
+- {host: status.doctoranywhere.com, result: DNS did not resolve}
+changelog: null
+changelog_note: 'No dated API or product changelog found. The Health Library at
+  https://doctoranywhere.com/blog/ is consumer health content, not a release feed.'
+deprecated_operations: []

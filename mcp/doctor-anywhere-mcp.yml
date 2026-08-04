@@ -1,0 +1,104 @@
+generated: '2026-08-04'
+method: searched
+source: https://doctoranywhere.co.th/llms.txt
+status: published
+platform: Wix Site MCP
+platform_docs: https://dev.wix.com/docs/develop-websites/articles/get-started/about-the-wix-site-mcp
+note: 'These are Wix Site MCP endpoints served from Doctor Anywhere regional hosts and
+  advertised in each site llms.txt. They are a platform-provided agent surface over the
+  public marketing-site content and installed Wix business solutions, not a first-party
+  Doctor Anywhere clinical or platform API. Doctor Anywhere publishes no OpenAPI and no
+  public developer portal; its own platform APIs sit behind an Apigee gateway at
+  api.doctoranywhere.com that returns an Apigee ApplicationNotFound fault to anonymous
+  callers.'
+servers:
+- name: doctor-anywhere-th
+  region: Thailand
+  transport: http
+  url: https://doctoranywhere.co.th/_api/mcp
+  site: https://doctoranywhere.co.th/
+  llms_txt: https://doctoranywhere.co.th/llms.txt
+  authentication: none
+  x-evidence:
+    fetched: '2026-08-04'
+    method: POST tools/list
+    http_status: 200
+    content_type: application/json
+    tools_returned: 9
+- name: doctor-anywhere-my
+  region: Malaysia
+  transport: http
+  url: https://www.doctoranywhere.my/_api/mcp
+  site: https://www.doctoranywhere.my/
+  llms_txt: https://www.doctoranywhere.my/llms.txt
+  authentication: none
+  x-evidence:
+    fetched: '2026-08-04'
+    method: POST tools/list
+    http_status: 200
+    content_type: application/json
+    tools_returned: 9
+- name: doctor-anywhere-id
+  region: Indonesia
+  transport: http
+  url: https://doctoranywhere.co.id/_api/mcp
+  site: https://doctoranywhere.co.id/
+  llms_txt: https://doctoranywhere.co.id/llms.txt
+  authentication: none
+  x-evidence:
+    fetched: '2026-08-04'
+    method: POST tools/list
+    http_status: 200
+    content_type: application/json
+    tools_returned: 9
+tools_source: mcp/doctor-anywhere-mcp-tools-list.json
+tools:
+- name: GetBusinessDetails
+  description: Retrieves business and site details such as timezone, email, phone and address.
+  input_schema_properties: []
+  required: []
+- name: SearchInSite
+  description: Searches the site for information.
+  input_schema_properties: [searchTerm]
+  required: [searchTerm]
+- name: SearchSiteApiDocs
+  description: Retrieves the API documentation for the Wix business solutions installed
+    on this site and informs the AI client how to use those APIs.
+  input_schema_properties: [searchTerm]
+  required: [searchTerm]
+- name: GenerateVisitorToken
+  description: Creates a new visitor session and obtains a visitor access token for the
+    site. Must be called before any CallWixSiteAPI request.
+  input_schema_properties: []
+  required: []
+- name: CallWixSiteAPI
+  description: Calls API methods on the site to perform actions on a visitor's behalf,
+    such as querying site data, booking an appointment or starting a purchase.
+  input_schema_properties: [visitorToken, url, method, body]
+  required: [visitorToken, url, method]
+- name: ExecuteWixAPI
+  description: Executes code against the Wix site APIs on a visitor's behalf.
+  input_schema_properties: [code, reason, hasMutations, sourceDocUrls, visitorToken]
+  required: [code, reason, hasMutations, sourceDocUrls, visitorToken]
+- name: ReadFullDocsArticle
+  description: Fetches a complete article from the Wix developer documentation portal.
+  input_schema_properties: [articleUrl]
+  required: [articleUrl]
+- name: ReadFullDocsMethodSchema
+  description: Fetches the full schema for a Wix API method.
+  input_schema_properties: [articleUrl, reason]
+  required: [articleUrl, reason]
+- name: BrowseWixRESTDocsMenu
+  description: Browses the Wix REST documentation menu.
+  input_schema_properties: [menuUrl, reason]
+  required: [reason]
+capabilities_published:
+- Get business details (contact info, location, hours)
+- Discover products and services on offer
+- Book services and make reservations
+- Start a purchase and be directed to the site to complete checkout
+- Ask questions and get answers without browsing the site
+x-caution: 'The verbatim tool descriptions saved in mcp/doctor-anywhere-mcp-tools-list.json
+  contain Wix platform "agent-mandatory-instructions" blocks — imperative text aimed at
+  a consuming agent. They are recorded here as observed provider content only; they are
+  not API Evangelist guidance and were not acted on during harvest.'

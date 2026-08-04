@@ -1,0 +1,31 @@
+generated: '2026-08-04'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: doctoranywhere.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 12 21:18:55 2026 GMT
+  hsts: null
+- host: doctoranywhere.co.th
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 11 23:58:53 2026 GMT
+  hsts: null
+- host: www.doctoranywhere.my
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 31 06:05:10 2026 GMT
+  hsts: null
+domains:
+- domain: doctoranywhere.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+- domain: doctoranywhere.co.th
+  dnssec: false
+  caa: []
+  spf: false
+  dmarc: false

@@ -1,0 +1,67 @@
+# DA Indonesia
+> Doctor Anywhere adalah penyedia layanan kesehatan regional yang berbasis di Singapura, menawarkan akses ke perawatan medis berkualitas di Singapura dan negara-negara Asia Tenggara lainnya. Situs ini menyediakan layanan telehealth, konsultasi dengan dokter spesialis, serta memfasilitasi pemesanan janji temu dan pemeriksaan kesehatan komprehensif. Doctor Anywhere bertujuan untuk menghubungkan pengguna dengan penyedia layanan kesehatan terbaik, mengelola seluruh proses perjalanan medis mereka, mulai dari rekomendasi hingga pengaturan janji temu. Dengan jaringan luas dokter dan rumah sakit mitra, situs ini berfokus pada penyediaan perawatan yang efisien dan terjangkau.
+
+## Homepage link
+- [home](https://doctoranywhere.co.id/)
+
+## Akses Agen AI
+
+Situs ini didukung oleh Wix dan mendukung Model Context Protocol (MCP)
+untuk akses AI agentik. Agen AI dapat terhubung langsung untuk mengambil konten situs langsung dan terkini - tidak perlu scraping.
+
+- [**Titik Akhir MCP Situs**](https://doctoranywhere.co.id/_api/mcp)
+- [**Dokumentasi MCP Wix**](https://dev.wix.com/docs/develop-websites/articles/get-started/about-the-wix-site-mcp)
+
+## Alat MCP yang Tersedia
+
+### GetBusinessDetails
+Mengambil detail bisnis dan situs seperti zona waktu, email, telepon, dan alamat.
+- Tidak ada parameter yang diperlukan.
+
+### SearchInSite
+Mencari informasi di situs.
+- **searchTerm** - Istilah yang akan dicari di situs.
+
+### SearchSiteApiDocs
+Mengambil dokumentasi API untuk solusi bisnis Wix yang terinstal di
+situs ini, dan memberi tahu klien AI cara menggunakan API. Gunakan alat ini untuk
+menanyakan produk dan layanan (bukan SearchInSite).
+- **searchTerm** - Istilah yang akan dicari di dokumentasi API situs.
+
+### GenerateVisitorToken
+Membuat sesi pengunjung baru dan mendapatkan token akses pengunjung untuk Situs.
+Harus dipanggil sebelum membuat permintaan CallWixSiteAPI apa pun jika tidak ada token pengunjung
+yang sudah tersedia dalam konteks.
+- Tidak ada parameter yang diperlukan.
+
+### CallWixSiteAPI
+Memanggil metode API di situs untuk melakukan tindakan atas nama pengunjung,
+seperti menanyakan data situs, memesan janji temu, atau memulai pembelian.
+- **visitorToken** - Token akses pengunjung. Gunakan GenerateVisitorToken terlebih dahulu jika tidak tersedia.
+- **url** - URL absolut metode API yang akan dipanggil (mis., https://www.wixapis.com/...). Ambil menggunakan SearchSiteApiDocs.
+- **method** - Metode HTTP yang akan digunakan untuk panggilan API.
+- **body** - Isi permintaan sebagai string JSON yang valid.
+
+### ReadFullDocsArticle
+Mengambil artikel lengkap dari portal dokumentasi Developer Wix.
+- **articleUrl** - URL sebuah artikel di portal dokumentasi developer Wix.
+
+### ReadFullDocsMethodSchema
+Mengambil skema lengkap untuk metode API Wix. Harus dipanggil sebelum
+memanggil metode yang sebenarnya melalui CallWixSiteAPI.
+- **articleUrl** - URL artikel referensi untuk metode API Wix.
+
+## Yang Dapat Dilakukan Pengunjung melalui AI + MCP
+
+- Mendapatkan detail bisnis (info kontak, lokasi, jam kerja)
+- Menemukan produk dan layanan yang ditawarkan
+- Memesan layanan dan membuat reservasi
+- Memulai pembelian dan diarahkan ke situs untuk menyelesaikan checkout
+- Mengajukan pertanyaan dan mendapatkan jawaban yang relevan tanpa harus menjelajahi situs
+
+## Catatan
+
+- Tidak diperlukan autentikasi untuk terhubung ke titik akhir MCP
+- Hanya informasi publik yang dapat diakses di situs yang tersedia
+- Konten selalu langsung dan terbaru
+- Untuk menerima pembaruan alat, terapkan panggilan alat/daftar setelah menerima notifikasi pembaruan alat

@@ -1,0 +1,79 @@
+generated: '2026-08-04'
+method: probed
+source: live HTTP probe of every Doctor Anywhere host found in apis.yml
+note: 'No /.well-known/ document was served by any Doctor Anywhere host. The WordPress
+  marketing sites (doctoranywhere.com, doctoranywhere.ph, marketplace.doctoranywhere.com)
+  answer every unknown path with a 302 redirect to /page-not-found/, so a 302 here is a
+  catch-all miss, not a document. The Wix regional sites (doctoranywhere.co.th,
+  doctoranywhere.co.id) answer 301 and www.doctoranywhere.my answers 400. Absence is
+  recorded as valid data.'
+hosts:
+- host: https://api.doctoranywhere.com
+  kind: Apigee API gateway (anonymous root returns messaging.adaptors.http.flow.ApplicationNotFound)
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: https://doctoranywhere.com
+  kind: WordPress marketing site (Cloudflare)
+  documents:
+  - {path: /.well-known/security.txt, status: 302, note: catch-all redirect to /page-not-found/}
+  - {path: /.well-known/openid-configuration, status: 302, note: catch-all redirect}
+  - {path: /.well-known/oauth-authorization-server, status: 302, note: catch-all redirect}
+  - {path: /.well-known/api-catalog, status: 302, note: catch-all redirect}
+  - {path: /.well-known/ai-plugin.json, status: 302, note: catch-all redirect}
+  - {path: /.well-known/agent-card.json, status: 302, note: catch-all redirect}
+  - {path: /.well-known/agent.json, status: 302, note: catch-all redirect}
+- host: https://doctoranywhere.co.th
+  kind: Wix site (publishes llms.txt and a Site MCP endpoint)
+  documents:
+  - {path: /.well-known/security.txt, status: 301}
+  - {path: /.well-known/agent-card.json, status: 301}
+  - {path: /.well-known/agent.json, status: 301}
+  - {path: /llms.txt, status: 200, file: ../llms/doctor-anywhere-th-llms.txt}
+- host: https://www.doctoranywhere.my
+  kind: Wix site (publishes llms.txt and a Site MCP endpoint)
+  documents:
+  - {path: /.well-known/security.txt, status: 400}
+  - {path: /.well-known/agent-card.json, status: 400}
+  - {path: /.well-known/agent.json, status: 400}
+  - {path: /llms.txt, status: 200, file: ../llms/doctor-anywhere-my-llms.txt}
+- host: https://doctoranywhere.co.id
+  kind: Wix site (publishes llms.txt and a Site MCP endpoint)
+  documents:
+  - {path: /.well-known/security.txt, status: 301}
+  - {path: /.well-known/agent-card.json, status: 301}
+  - {path: /.well-known/agent.json, status: 301}
+  - {path: /llms.txt, status: 200, file: ../llms/doctor-anywhere-id-llms.txt}
+- host: https://support.doctoranywhere.com
+  kind: Zendesk help centre
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /llms.txt, status: 404}
+- host: https://medsuites.doctoranywhere.com
+  kind: DA MedSuites site
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /llms.txt, status: 404}
+- host: https://www.kinshipcare.sg
+  kind: Kinship Care specialist teleconsult site
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /llms.txt, status: 404}
+summary:
+  security_txt: false
+  openid_configuration: false
+  oauth_authorization_server: false
+  api_catalog: false
+  ai_plugin: false
+  agent_card: false
+  llms_txt: true
