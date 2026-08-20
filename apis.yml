@@ -32,6 +32,17 @@ tags:
 - Corporate Wellness
 - Singapore
 - Southeast Asia
+- MCP
+tags_raw:
+- Company
+- Healthcare
+- Telehealth
+- Telemedicine
+- Digital Health
+- Health Screening
+- Corporate Wellness
+- Singapore
+- Southeast Asia
 - Model Context Protocol
 apis:
 - aid: doctor-anywhere:site-mcp-th
@@ -43,6 +54,10 @@ apis:
   humanURL: https://doctoranywhere.co.th/
   baseURL: https://doctoranywhere.co.th/_api/mcp
   tags:
+  - MCP
+  - Telehealth
+  - Thailand
+  tags_raw:
   - Model Context Protocol
   - Telehealth
   - Thailand
@@ -59,6 +74,10 @@ apis:
   humanURL: https://www.doctoranywhere.my/
   baseURL: https://www.doctoranywhere.my/_api/mcp
   tags:
+  - MCP
+  - Telehealth
+  - Malaysia
+  tags_raw:
   - Model Context Protocol
   - Telehealth
   - Malaysia
@@ -76,6 +95,10 @@ apis:
   humanURL: https://doctoranywhere.co.id/
   baseURL: https://doctoranywhere.co.id/_api/mcp
   tags:
+  - MCP
+  - Telehealth
+  - Indonesia
+  tags_raw:
   - Model Context Protocol
   - Telehealth
   - Indonesia
