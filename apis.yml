@@ -89,6 +89,9 @@ apis:
     url: mcp/doctor-anywhere-mcp.yml
   - type: LLMsTxt
     url: llms/doctor-anywhere-th-llms.txt
+  x-surface: platform-generated
+  x-platform: wix
+  x-platform-surface: site-mcp
 - aid: doctor-anywhere:site-mcp-my
   name: Doctor Anywhere Malaysia Site MCP
   description: 'Anonymous Model Context Protocol endpoint served from the Doctor Anywhere
@@ -109,6 +112,9 @@ apis:
     url: mcp/doctor-anywhere-mcp.yml
   - type: LLMsTxt
     url: llms/doctor-anywhere-my-llms.txt
+  x-surface: platform-generated
+  x-platform: wix
+  x-platform-surface: site-mcp
 - aid: doctor-anywhere:site-mcp-id
   name: Doctor Anywhere Indonesia Site MCP
   description: 'Anonymous Model Context Protocol endpoint served from the Doctor Anywhere
@@ -130,6 +136,9 @@ apis:
     url: mcp/doctor-anywhere-mcp.yml
   - type: LLMsTxt
     url: llms/doctor-anywhere-id-llms.txt
+  x-surface: platform-generated
+  x-platform: wix
+  x-platform-surface: site-mcp
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
